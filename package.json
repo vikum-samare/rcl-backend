@@ -1,0 +1,32 @@
+{
+  "name": "rcl_backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "lint": "eslint ./src --fix",
+    "test": "mocha --recursive --exit",
+    "debug": "nodemon --inspect src/index.js"
+  },
+  "author": "vikum-samare",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "jsonschema": "^1.2.6",
+    "moment": "^2.29.1",
+    "mongoose": "^5.9.15",
+    "nodemon": "^2.0.4",
+    "uuid": "3.3.2"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^7.12.1",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "mocha": "^8.2.1",
+    "sinon": "^9.2.1",
+    "supertest": "^6.0.1"
+  }
+}

@@ -1,0 +1,6 @@
+{
+    "DEPLOYMENT_ENV": "dev",
+    "APPLICATION" : "rcl_backend",
+    "MONGOURI":"mongodb://localhost:27017/test_app",
+    "SESSION_EXPIRY_SECONDS": 36000
+}
