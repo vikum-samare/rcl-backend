@@ -11,7 +11,7 @@ router.get("/all", postsController.getAll)
 /**
  * Get post by urn
  */
-router.get("/:post_id", postsController.get)
+router.get("/:postId", postsController.get)
 
 /**
  * Create post
@@ -21,6 +21,6 @@ router.post("/", postsController.create)
 /**
  * Create comment for a post
  */
-router.post("/:post_id/comment", postsController.createPostComment)
+router.post("/:postId/comment", postsController.createPostComment)
 
 module.exports = router

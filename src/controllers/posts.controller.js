@@ -4,8 +4,8 @@ const { Ok, BadRequest, NotFound, Forbidden } = require("../services/responses")
 const Logger = require("../services/Logger")
 const logger = new Logger("Posts.controller")
 
-const parsePostsResponse = (posts) => posts.map((({ _id: urn, postTitle, postDescription, postColor, updatedAt: timestamp, comments }) => ({
-    urn,
+const parsePostsResponse = (posts) => posts.map((({ _id: postId, postTitle, postDescription, postColor, updatedAt: timestamp, comments }) => ({
+    postId,
     postTitle,
     postDescription,
     postColor,
@@ -13,10 +13,10 @@ const parsePostsResponse = (posts) => posts.map((({ _id: urn, postTitle, postDes
     timestamp
 })))
 const parsePostResponse = (post) => {
-    const { _id: urn, postTitle, postDescription, postColor, updatedAt: timestamp, comments } = post
+    const { _id: postId, postTitle, postDescription, postColor, updatedAt: timestamp, comments } = post
     const postComments = comments.map(({ comment }) => comment)
     return {
-        urn,
+        postId,
         postTitle,
         postDescription,
         postColor,
@@ -39,9 +39,9 @@ exports.getAll = async(req, res) => {
 }
 exports.get = async(req, res) => {
     try {
-        const { post_id } = req.params
+        const { postId } = req.params
         const post = await Post.findPost({
-            _id: post_id
+            _id: postId
         })
         const [first] = post
         res.send(Ok("OK", parsePostResponse(first)))
@@ -71,16 +71,15 @@ exports.create = async(req, res) => {
 }
 exports.createPostComment = async(req, res) => {
     try {
-        const { post_id: urn } = req.params
+        const { postId } = req.params
         const { comment } = req.body
 
         // locate post
         const postById = await Post.findActivePost({
-            _id: urn
+            _id: postId
         })
-
         const commentResponse = await Comment.save({
-            post: urn,
+            post: postId,
             comment
         })
         const [post] = postById

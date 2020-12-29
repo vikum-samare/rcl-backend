@@ -27,7 +27,7 @@ module.exports = {
      * Find all active posts
      * @return {Query<Array<Document>, Document>}
      */
-    findAll: () => Post.find({ isActive: true }),
+    findAll: () => Post.find({ isActive: true }).sort({ updatedAt: "descending" }),
 
     /**
      * Find one active post
